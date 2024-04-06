@@ -22,12 +22,16 @@
             <h5 class="offcanvas-title">Ingresso Válido</h5>
         </div>
         <div class="offcanvas-body small">
-            <button class="btn btn-lg btn-success mb-4" onclick="hideOffcanvasValidarIngresso();">
-                Validar Ingresso
-            </button>
-            <button class="btn btn-lg btn-outline-danger" onclick="hideOffcanvasValidarIngresso();">
-                Fechar
-            </button>
+            <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-success mb-4" onclick="hideOffcanvasValidarIngresso();">
+                    Validar Ingresso
+                </button>
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-outline-danger" onclick="hideOffcanvasValidarIngresso();">
+                    Fechar
+                </button>
+            </div>
         </div>
     </div>
 
@@ -53,6 +57,7 @@
 
         function hideOffcanvasValidarIngresso() {
             offcanvasValidarIngresso.hide();
+            window.leitura_bloqueada = false;
         }
 
         scanner.addListener('scan', function (content) {

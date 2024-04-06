@@ -10,18 +10,24 @@
 
 <body>
     <div class="container">
-        <select class="form-select d-none" id="list-camera" onchange="changeCamera(this)"></select>
+        <select class="form-select d-none" id="list-camera" onchange="changeCamera(this)" style="margin-top: 20px;">
+        </select>
     </div>
 
-    <div class="container-fluid h-100 w-100" style="position:fixed;top:0;left:0;z-index:-1">
+    <div class=" container-fluid h-100 w-100" style="position:fixed;top:0;left:0;z-index:-1">
         <video class="h-100 w-100" id="preview"></video>
     </div>
+    <div class="d-grid gap-2 w-100" style="position:fixed;bottom:0;left:0;z-index:1;padding: 0 50px;">
+        <button class="btn btn-lg btn-success mb-4" onclick="showffcanvasValidarIngressoDigitado();">
+            Digitar Código
+        </button>
+    </div>
 
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-validar-ingresso">
+    <div class="offcanvas offcanvas-bottom" style="height:225px" tabindex="-1" id="offcanvas-validar-ingresso">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title">Ingresso Válido</h5>
         </div>
-        <div class="offcanvas-body small">
+        <div class="offcanvas-body">
             <div class="d-grid gap-2">
                 <button class="btn btn-lg btn-success mb-4" onclick="hideOffcanvasValidarIngresso();">
                     Validar Ingresso
@@ -35,14 +41,14 @@
         </div>
     </div>
 
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-validar-ingresso-digitado">
+    <div class="offcanvas offcanvas-bottom" style="height:250px" tabindex="-1" id="offcanvas-validar-ingresso-digitado">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title">Ingresso Digitado</h5>
         </div>
-        <div class="offcanvas-body small">
-            <div class="input-group input-group-lg mb-4">
-                <span class="input-group-text" id="inputGroup-sizing-lg">Código do Ingresso</span>
-                <input type="text" class="form-control" id="codigo-ingresso">
+        <div class="offcanvas-body">
+            <div class=" mb-4">
+                <label class="form-label">Código do Ingresso</label>
+                <input class="form-control form-control-lg" type="text" id="codigo-ingresso">
             </div>
             <div class="d-grid gap-2">
                 <button class="btn btn-lg btn-success" onclick="hideOffcanvasValidarIngresso();">
@@ -60,6 +66,7 @@
 
         const selectCamera = document.getElementById("list-camera");
         const offcanvasValidarIngresso = new bootstrap.Offcanvas(document.getElementById('offcanvas-validar-ingresso'));
+        const offcanvasValidarIngressoDigitado = new bootstrap.Offcanvas(document.getElementById('offcanvas-validar-ingresso-digitado'));
 
         let scanner = new Instascan.Scanner({
             video: document.getElementById('preview'),
@@ -77,6 +84,11 @@
             window.leitura_bloqueada = false;
         }
 
+        function showffcanvasValidarIngressoDigitado() {
+            window.leitura_bloqueada = true;
+            offcanvasValidarIngressoDigitado.show();
+        }
+
         scanner.addListener('scan', function (content) {
             if (!window.leitura_bloqueada) {
                 offcanvasValidarIngresso.show();
@@ -84,23 +96,23 @@
             }
         });
 
-        Instascan.Camera.getCameras().then(cameras => {
-            if (cameras.length > 0) {
-                selectCamera.classList.remove('d-none');
+        // Instascan.Camera.getCameras().then(cameras => {
+        //     if (cameras.length > 0) {
+        //         selectCamera.classList.remove('d-none');
 
-                scanner.start(cameras[0]);
+        //         scanner.start(cameras[0]);
 
-                for (const key in cameras) {
-                    let novaOpcao = document.createElement("option");
-                    novaOpcao.text = cameras.name || `Câmera ${key}`;
-                    novaOpcao.value = key;
+        //         for (const key in cameras) {
+        //             let novaOpcao = document.createElement("option");
+        //             novaOpcao.text = cameras.name || `Câmera ${key}`;
+        //             novaOpcao.value = key;
 
-                    selectCamera.add(novaOpcao);
-                }
-            } else {
-                console.error("Não existe câmera no dispositivo!");
-            }
-        });
+        //             selectCamera.add(novaOpcao);
+        //         }
+        //     } else {
+        //         console.error("Não existe câmera no dispositivo!");
+        //     }
+        // });
     </script>
 </body>
 

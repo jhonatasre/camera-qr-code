@@ -23,11 +23,10 @@
     <script>
         const selectCamera = document.getElementById("list-camera");
 
-        let scanner = new Instascan.Scanner(
-            {
-                video: document.getElementById('preview')
-            }
-        );
+        let scanner = new Instascan.Scanner({
+            video: document.getElementById('preview'),
+            mirror: false,
+        });
 
         function changeCamera(el) {
             console.log(el);

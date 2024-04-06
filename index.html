@@ -11,6 +11,7 @@
 <body>
     <div class="container">
         <select class="form-select d-none" id="list-camera" onchange="changeCamera(this)"></select>
+        <button class="btn btn-success" onclick="window.leitura_bloqueada = false">Destravar Scaner</button>
     </div>
 
     <div class="container-fluid">
@@ -21,6 +22,8 @@
     <script type="text/javascript" src="./instascan.min.js"></script>
 
     <script>
+        window.leitura_bloqueada = false;
+
         const selectCamera = document.getElementById("list-camera");
 
         let scanner = new Instascan.Scanner({
@@ -38,7 +41,10 @@
         }
 
         scanner.addListener('scan', function (content) {
-            console.log(content);
+            if (!window.leitura_bloqueada) {
+                console.log(content);
+                window.leitura_bloqueada = true;
+            }
         });
 
         Instascan.Camera.getCameras().then(cameras => {

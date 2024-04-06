@@ -17,9 +17,9 @@
         <video class="h-100 w-100" id="preview"></video>
     </div>
 
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-validar-ingresso">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Ingresso Válido</h5>
+            <h5 class="offcanvas-title">Ingresso Válido</h5>
         </div>
         <div class="offcanvas-body small">
             <button class="btn btn-lg btn-success mb-4" onclick="hideOffcanvasValidarIngresso();">
@@ -38,7 +38,7 @@
         window.leitura_bloqueada = false;
 
         const selectCamera = document.getElementById("list-camera");
-        const offcanvasValidarIngresso = new bootstrap.Offcanvas(document.getElementById('meuOffcanvas'));
+        const offcanvasValidarIngresso = new bootstrap.Offcanvas(document.getElementById('offcanvas-validar-ingresso'));
 
         let scanner = new Instascan.Scanner({
             video: document.getElementById('preview'),

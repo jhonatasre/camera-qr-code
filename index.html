@@ -35,6 +35,23 @@
         </div>
     </div>
 
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-validar-ingresso-digitado">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Ingresso Digitado</h5>
+        </div>
+        <div class="offcanvas-body small">
+            <div class="input-group input-group-lg mb-4">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Código do Ingresso</span>
+                <input type="text" class="form-control" id="codigo-ingresso">
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-success" onclick="hideOffcanvasValidarIngresso();">
+                    Validar Ingresso
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="./instascan.min.js"></script>
 

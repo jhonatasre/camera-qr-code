@@ -96,23 +96,23 @@
             }
         });
 
-        // Instascan.Camera.getCameras().then(cameras => {
-        //     if (cameras.length > 0) {
-        //         selectCamera.classList.remove('d-none');
+        Instascan.Camera.getCameras().then(cameras => {
+            if (cameras.length > 0) {
+                selectCamera.classList.remove('d-none');
 
-        //         scanner.start(cameras[0]);
+                scanner.start(cameras[0]);
 
-        //         for (const key in cameras) {
-        //             let novaOpcao = document.createElement("option");
-        //             novaOpcao.text = cameras.name || `Câmera ${key}`;
-        //             novaOpcao.value = key;
+                for (const key in cameras) {
+                    let novaOpcao = document.createElement("option");
+                    novaOpcao.text = cameras.name || `Câmera ${key}`;
+                    novaOpcao.value = key;
 
-        //             selectCamera.add(novaOpcao);
-        //         }
-        //     } else {
-        //         console.error("Não existe câmera no dispositivo!");
-        //     }
-        // });
+                    selectCamera.add(novaOpcao);
+                }
+            } else {
+                console.error("Não existe câmera no dispositivo!");
+            }
+        });
     </script>
 </body>
 

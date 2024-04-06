@@ -51,7 +51,7 @@
                 <input class="form-control form-control-lg" type="text" id="codigo-ingresso">
             </div>
             <div class="d-grid gap-2">
-                <button class="btn btn-lg btn-success" onclick="hideOffcanvasValidarIngresso();">
+                <button class="btn btn-lg btn-success" onclick="hideOffcanvasValidarDigitado();">
                     Validar Ingresso
                 </button>
             </div>
@@ -81,6 +81,11 @@
 
         function hideOffcanvasValidarIngresso() {
             offcanvasValidarIngresso.hide();
+            window.leitura_bloqueada = false;
+        }
+
+        function hideOffcanvasValidarDigitado() {
+            offcanvasValidarIngressoDigitado.hide();
             window.leitura_bloqueada = false;
         }
 
